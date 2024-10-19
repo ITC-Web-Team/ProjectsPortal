@@ -1,14 +1,29 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-
+import ReactDOM from 'react-dom/client'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Layout from './Layout'
 import Oppurtunities from './pages/Oppurtunities'
+import Projects from './pages/Projects'
+import PartOpp from './pages/PartOpp'
+import PartProject from './pages/PartProject'
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+export default function App() {
+  return (
     <Layout>
-      <Oppurtunities />
+      <BrowserRouter>
+        <Routes>
+            <Route index element={<Oppurtunities />} />
+            <Route path="//:id" element={<PartOpp />} />
+            <Route path="projects" element={<Projects />} />
+            <Route path="partproject" element={<PartProject />} />
+        </Routes>
+      </BrowserRouter>
     </Layout>
-  </StrictMode>,
-)
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+
